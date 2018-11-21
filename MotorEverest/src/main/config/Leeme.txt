@@ -1,0 +1,31 @@
+BonoSocial.
+
+- Usaba FormularioSede en vez de CargaMensaje
+- No tiene un objeto Carga, es una Solicitud
+- Es necesario usar la API de la Sede para:
+    - Con un UUID del fichero ZIP de que se descargue un Fichero para conseguir su idFichero que lo necesitaré para notificar usando la cola del motor notificaciones (/interno/v1/ficheros/{uuid}/info)
+    - Con el UUID de la carga descargo el Fichero justificante para poder conseguir el UUID del justificante y componer la URL para poder descargármelo ya que tengo que copiarlo en el punto de montaje para EVEREST
+        1. /interno/v1/carga/{0}/ficheros/tipo/{1}
+        2. /interno/v1/ficheros/solicitud/{0}
+
+
+        apicnmc.domain=https://apidesa.cnmc.es
+        apicnmc.interno.seguridad.url=/interno/v1/ficheros/reposita
+        apicnmc.interno.reposita.url=/interno/v1/ficheros/reposita
+        apicnmc.interno.fichero.info.url=/interno/v1/ficheros/{uuid}/info
+        apicnmc.interno.fichero.solicitud.url=/interno/v1/ficheros/solicitud/{0}
+        apicnmc.interno.carga.ficheros.url=/interno/v1/carga/{0}/ficheros/tipo/{1}
+
+
+    - Tengo que subir el fichero .err usando la API ya que al no haber Carga no puedo usar la API del S3 (/interno/v1/ficheros/reposita)
+
+
+
+
+Alta nuevo tipo de fichero
+1. Añadir ids de tipo de fichero en motoreverest.properties
+2. Añadir patrones de nombres de ficheros en motoreverest-database.properties
+3. Añadir constants en TipoFicheroConst
+4. Crear bean en EverestConfiguracion
+5. Añadir ficheros obligatorios en ItemFileDAO
+6. Añadir las validaciones en ValidatorService

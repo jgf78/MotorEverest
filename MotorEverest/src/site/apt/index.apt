@@ -1,0 +1,22 @@
+MotorEverest
+
+1. Introducción
+
+    MotorEverest forma parte del sistema EVEREST (Sistema de Información de Circulares sobre petición de información a las Empresas Distribuidoras de la Electricidad)
+    gestionado por la Comisión Nacional de los Mercados y la Competencia (CNMC) que permite la validación de ficheros csv de los sujetos obligados (ficheros de inventario y de circular)
+
+2. Entorno tecnológico
+
+    * Java 1.8
+
+    * Maven 3
+
+    * Spring 4
+
+3. Arquitectura
+
+    * Capa de presentación: Spring MVC
+
+    * Capa de servicio: Spring
+
+    * Capa de repositorio: No tiene

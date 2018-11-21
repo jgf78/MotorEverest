@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <context:property-placeholder location="file:${user.home}/configuracion/motoreverest/motoreverest.properties"/>
+
+    <context:component-scan base-package="es.cnmc"><!--los controller en spring-servlet -->
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
+        <!-- <context:exclude-filter type="annotation" expression="org.springframework.context.annotation.Configuration"/> -->
+    </context:component-scan>
+
+    <bean id="sedeRestTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="errorHandler">
+            <bean class="es.cnmc.everest.exception.RestErrorHandler" />
+        </property>
+    </bean>
+
+    <!-- Configure the scheduler
+    <task:annotation-driven executor="executorWithPoolSizeRange" scheduler="taskScheduler"/>
+    <task:executor id="executorWithPoolSizeRange" pool-size="0-25" queue-capacity="100"/>
+    <task:scheduler id="taskScheduler" pool-size="5"/>-->
+
+    <!-- Imports -->
+    <import resource="classpath:applicationContext-commons-almacenamiento-ecs.xml"/>
+    <import resource="classpath:applicationContext-commons-core.xml"/>
+
+</beans>

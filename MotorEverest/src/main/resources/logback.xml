@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <include file="${user.home}/configuracion/motoreverest/motoreverest-logback.xml"/>
+</configuration>

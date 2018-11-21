@@ -1,0 +1,292 @@
+Release Notes
+
+1.0.0
+
+  * Versión liberada el 03/05/2016.
+
+  * Features:
+
+      * Descarga de un fichero ZIP de Inventario Distribución Electrica (RD-1048) desde el repositorio S3 cuando recibe el JMS correspondiente
+
+      * Validaciones del nombre del ZIP y de los nombres de los ficheros contenidos en él
+
+      * Validaciones sintácticas y semánticas del contenido de los ficheros
+
+      * Envío de mensaje a la cola de sedeeventos con el resultado de la validación
+
+      * Si el fichero pasa las validaciones se hace una copia al file-system de EVEREST
+
+      * Si el fichero no pasa las validaciones se genera un fichero con extenxión .err en formato json con el detalle de los errores
+
+      * Creación del site de Maven.
+
+      * Creación de JavaDoc
+
+  * Bugs:
+
+      * No conocidos
+
+
+1.0.1
+
+  * Versión liberada el 25/05/2016.
+
+  * Features:
+
+      * Validación de los más de 40 ficheros relativos a la información regulatoria de costes (Circular 4/2015)
+
+      * Validaciones de la presencia de los ficheros obligatorios según tipo de empresa
+
+      * Inclusión de nuevos validadores (FloatFixed, Date4Date8)
+
+      * Reestructuración en la organización de los ficheros de validación para poder administrar fácilmente nuevos tipos de ficheros
+
+      * Mensajes de error más concretos y descriptivos
+
+      * Limitación  máxima del número de mensajes de error a 200 por tipo de fichero
+
+  * Bugs:
+
+      * No conocidos
+
+
+1.0.2
+
+  * Versión liberada el 30/05/2016.
+
+  * Features:
+
+      * Añadida la validación de NIF,CIF en el fichero de inventario transmisiones.
+
+      * El fichero de AUDITORIA será obligatorio según el tipo de empresa
+
+  * Bugs:
+
+      * No conocidos
+
+
+1.0.3
+
+  * Versión liberada el 16/06/2016.
+
+  * Features:
+
+      * Internacionalización de mensajes de error i18. Inclusión de un Pull Request de la librería super-csv.
+
+      * Asociado cada error a un grupo de código de error.
+
+      * Documentado los errores en https://api.cnmc.gob.es/doc/pages/viewpage.action?pageId=18382851
+
+      * No se mostrarán las claves del objeto JSON cuyo valor es nulo
+
+      * Modificado los mensajes en el log para que se muestre la fecha
+
+      * CSVReader como bean manejado por Spring
+
+  * Bugs:
+
+      * No conocidos
+
+
+1.0.4
+
+  * Versión liberada el 21/06/2016.
+
+  * Features:
+
+      * Actualizada la lista de distribuidoras obligadas a presentar el fichero de auditoría. Ahora es un requisito común a todos los procedimientos
+
+      * Añadido el fichero declaración responsable a la Circular
+
+      * Corregida errata en un mensaje de error
+
+  * Bugs:
+
+      * Consumo excesivo de CPU cuando hay varios millones de errores en una carga
+
+
+1.0.5
+
+  * Versión liberada el 29/06/2016.
+
+  * Features:
+
+      * Limita el número de errores máximo por carga a 200.000
+
+      * Incrementa el número de errores por fichero de 500 a 1000
+
+  * Bugs:
+
+      * No conocidos
+
+
+1.0.6
+
+  * Versión liberada el 01/07/2016.
+
+  * Features:
+
+      * Ya no se usa IOUtils.toByteArray(is) para el procesamiento. Da problemas si el fichero es muy grande.
+
+  * Bugs:
+
+      * No conocidos
+
+
+1.0.7
+
+  * Versión liberada el 05/07/2016.
+
+  * Features:
+
+      * Añadidas las validaciones de Auditoría de Inversiones de Distribución
+
+      * Ya no es obligatorio aportar la declaración responsable si se aportan los ficheros de auditoría.
+
+  * Bugs:
+
+      * En el tipo de fichero Auditoría Inversión el sistema pide el fichero de declaración responsable aunque se haya aportado
+
+
+1.0.8
+
+  * Versión liberada el 26/07/2016.
+
+  * Features:
+
+      * Código adaptado para cumplir las restricciones de Sonar
+
+      * Corrige el bug de obligación de presentar fichero de auditoría en Auditoría de Inversiones
+
+  * Bugs:
+
+      * No conocidos
+
+
+1.0.9
+
+  * Versión liberada el 02/08/2016.
+
+  * Features:
+
+      * Código adaptado para cumplir las restricciones de Sonar. 0 vulnerabilidadades / 0 bugs
+
+      * Incluye el procedimento de Bono Social. Está en estado inactivo.
+
+      * El Procesor InStrictThenType permite que el campo a verificar su tipo sea nulo
+
+      * Se hacen múltiples cambios en validaciones de ficheros. Son cambios en los ficheros externos de formato .csv y de lógica .xml
+
+  * Bugs:
+
+      * Errata en el mensaje de error de fichero ZIP incompleto
+
+
+1.1.0
+
+  * Versión liberada el 24/08/2016.
+
+  * Features:
+
+      * Corregido la errata en el mensaje de error ZIP incompleto
+
+      * Las columnas de tipo Documento de los ficheros permite ser CIF, NIF y NIE
+
+  * Bugs:
+
+      * No conocidos
+
+
+1.1.1
+
+  * Versión liberada el 15/09/2016.
+
+  * Features:
+
+      * Añadido el procedimiento Bono Social
+
+      * En caso de error no controlado envía email de aviso
+
+      * Se permiten tildes y espacios en los nombres de ficheros incluidos en un ZIP
+
+  * Bugs:
+
+      * Habría que chequear el estado del fichero que viene en el JMS porque en ciertas ocasiones esta CANCELADO
+
+
+1.1.2
+
+  * Versión liberada el 05/10/2016.
+
+  * Features:
+
+      * Añadida la comprobación que el estado del fichero no sea CANCELADO. En tal caso se lanza una excepción
+
+      * Si el ZIP pasa las validaciones entonces también se descarga el pdf de justificante de entrega
+
+  * Bugs:
+
+      * No conocidos
+
+
+1.1.3
+
+  * Versión liberada el 21/10/2016.
+
+  * Features:
+
+      * Se han cambiado el texto de las notificaciones
+
+      * Cambiada la librería de tratamiento de ficheros ZIP por Apache Commons Compress
+
+      * Controlados los cambios en los mensajes sin que tengan correspondencia en el POJO al que se mapean
+
+      * Añadida más información en el email de "Carga OK" (procedimiento, tipo de fichero y nombre de fichero)
+
+  * Bugs:
+
+      * No conocidos
+
+
+1.1.4
+
+  * Versión liberada el 03/11/2016.
+
+  * Features:
+
+      * Autoriza la presentación de ficheros a determinadas distribuidoras (por tipo de fichero)
+
+      * Aplicados los cambios en las validaciones solicitados por el usuario
+
+  * Bugs:
+
+      * Errata en mensaje de error "La empresa [R1-R1-999] está fuera de plazo o ya ha presentado este tipo de fichero en este procedimiento"
+
+1.1.5
+
+  * Versión liberada el 08/11/2016.
+
+  * Features:
+
+      * Corrige el bug de la errata de la versión anterior
+
+  * Bugs:
+
+      * No conocidos
+
+2.0.3
+
+  * Versión liberada el 06/06/2017.
+
+  * Features:
+
+      * Validaciones ficheros con datos referidos al año 2016
+      * Adaptado al uso de OneJSON
+      * Eliminadas validaciones Bono Social
+      * Implementado los tipos de validaciones: aplazada, ninguna y todas.
+      * Log exclusivo para el resultado del procesamineto (motoreverest_solicitudes.log)
+      * Validación de la empresa interesada en el censo de la Sede
+
+  * Bugs:
+
+      * No conocidos

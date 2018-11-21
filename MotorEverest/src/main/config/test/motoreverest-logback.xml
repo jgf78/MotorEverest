@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<included>
+
+    <appender name="FICHERO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/logs/motoreverest/motoreverest_test.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${user.home}/logs/motoreverest/motoreverest_test.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+	
+    <appender name="SOLICITUDES_LOG" class="ch.qos.logback.core.FileAppender">
+        <file>${user.home}/logs/motoreverest/motoreverest_solicitudes_test.log</file>
+		<append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n</pattern>
+        </encoder>		
+    </appender>		
+
+    <logger name="solicitudes" level="INFO" additivity="false">
+        <appender-ref ref="SOLICITUDES_LOG"/>
+    </logger>		
+
+    <logger name="es.cnmc" level="INFO" additivity="false">
+        <appender-ref ref="FICHERO_LOG"/>
+    </logger>
+
+</included>
+
